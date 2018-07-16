@@ -133,6 +133,7 @@ void http_download_task(void *pvParameters)
 
 	        /* Read HTTP response */
 	        printf("Read HTTP response \n");
+	        bool flag = false;
 	        FILE *f = fopen(rec_data.name,"wb");
 	        if(f == NULL){
 	          	printf("Failed to open file \n");
@@ -143,7 +144,10 @@ void http_download_task(void *pvParameters)
 	            bzero(recv_buf, sizeof(recv_buf));
 	            r = read(s, recv_buf, sizeof(recv_buf)-1);
 	            for(int i = 0; i<r; i++){
-	            	fputc(recv_buf[i],f);
+	            	if(recv_buf[i] == '{')
+	            		flag = true;
+	            	if(flag == true)
+	            		fputc(recv_buf[i],f);
 	            }
 	            printf("\n downloading ... %d \n",count++);
 

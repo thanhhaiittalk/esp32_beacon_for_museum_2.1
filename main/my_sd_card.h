@@ -24,6 +24,5 @@
 /*Prototype*/
 void sd_card_init();
 bool check_database();
-char *get_name(char name[64]);
 
 #endif /* MAIN_MY_SD_CARD_H_ */
