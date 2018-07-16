@@ -50,21 +50,40 @@ void sd_card_init()
 	    sdmmc_card_print_info(stdout, card);
 }
 
+/*Calculate size of file*/
+long cal_size(FILE * file)
+{
+	fseek(file,0L,SEEK_END);
+	long size = ftell(file);
+	fseek(file,0L,SEEK_SET);
+	return size;
+}
+
+/*Check the existence of the database file
+ *If database file isn't available, download it*/
 bool check_database()
 {
 	data data;
+	//TaskHandle_t xHttpHandle;
 	FILE* database= fopen("/sdcard/database.txt", "r");
 	if (database==NULL){
 			printf("Database isn't available \r\n Downloading database ... \n ");
 			data.url = "http://www.stream.esy.es/database/data/hcm_fine_arts_museum/overview/hcm_fine_arts_museum.txt";
 			data.name = "/sdcard/database.txt";
+			data.request= "GET http://www.stream.esy.es/database/data/hcm_fine_arts_museum/overview/hcm_fine_arts_museum.txt HTTP/1.0\r\n"
+				    "Host: "WEB_SERVER"\r\n"
+				    "User-Agent: esp-idf/1.0 esp32\r\n"
+				    "\r\n";;
+			xTaskCreate(&http_download_task,"http_download_task",2048,NULL,6,NULL);
 			if(!xQueueSend(Http_Queue_Handle,&data,portMAX_DELAY)){
 				printf("Failed to send request to HTTP download task \n");
 			}
+			//vTaskDelete(xHttpHandle);
 			return false;
 		}
 	else{
 		printf("Database is available \n");
+		printf("Size: %ld bytes",cal_size(database));
 		return true;
 	}
 

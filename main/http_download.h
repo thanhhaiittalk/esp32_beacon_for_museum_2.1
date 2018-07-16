@@ -8,11 +8,9 @@
 #ifndef MAIN_HTTP_DOWNLOAD_H_
 #define MAIN_HTTP_DOWNLOAD_H_
 
-/*Declare library*/
-#include "project_main.h"
-#include "my_sd_card.h"
-
 //http request library
+#include "project_main.h"
+
 #include <string.h>
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -32,6 +30,8 @@
 #include "lwip/sys.h"
 #include "lwip/netdb.h"
 #include "lwip/dns.h"
+
+#include "sdkconfig.h"
 
 /*Define*/
 #define WEB_SERVER "www.stream.esy.es"

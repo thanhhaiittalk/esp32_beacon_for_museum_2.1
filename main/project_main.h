@@ -29,10 +29,16 @@
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 
+/*My library*/
+#include "http_download.h"
+#include "my_ibeacon.h"
+#include "my_sd_card.h"
+
 /*Struct*/
 typedef struct{
 	char *name;
 	char *url;
+	char *request;
 }data;
 
 #endif /* MAIN_PROJECT_MAIN_H_ */
