@@ -1,13 +1,12 @@
 /*
- * my_sd_card.h
+ * parse_JSON.h
  *
- *  Created on: Jun 14, 2018
+ *  Created on: Jul 17, 2018
  *      Author: hai_dotcom
  */
 
-#ifndef MAIN_MY_SD_CARD_H_
-#define MAIN_MY_SD_CARD_H_
-
+#ifndef MAIN_PARSE_JSON_H_
+#define MAIN_PARSE_JSON_H_
 /*Declare library*/
 #include <stdio.h>
 #include <string.h>
@@ -20,9 +19,10 @@
 #include "driver/sdspi_host.h"
 #include "sdmmc_cmd.h"
 #include "sdkconfig.h"
+#include "nvs_flash.h"
+#include "cJSON.h"
 
 /*Prototype*/
-void sd_card_init();
-bool check_JSON();
-
-#endif /* MAIN_MY_SD_CARD_H_ */
+bool check_update(const char * const database);
+void read_JSON();
+#endif /* MAIN_PARSE_JSON_H_ */

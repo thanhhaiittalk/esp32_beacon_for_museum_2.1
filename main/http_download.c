@@ -139,11 +139,21 @@ void http_download_task(void *pvParameters)
 	          	printf("Failed to open file \n");
 	        }else
 	           	printf("Open file \n");
-	        	int count = 0;
+	        int count = 0;
+	        //If it's not a json file, don't need to filter out http header
+	        if(strstr(rec_data.name,"json.txt") == NULL){
+	        	printf("Not JSON \n");
+	        	flag = true;
+	        }
+	        else{
+	        	printf(rec_data.name);
+	        }
+
 	        do {
 	            bzero(recv_buf, sizeof(recv_buf));
 	            r = read(s, recv_buf, sizeof(recv_buf)-1);
 	            for(int i = 0; i<r; i++){
+	            	//'{': begin of json file
 	            	if(recv_buf[i] == '{')
 	            		flag = true;
 	            	if(flag == true)

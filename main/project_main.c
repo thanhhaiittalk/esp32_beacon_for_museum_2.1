@@ -6,6 +6,7 @@
 #include "my_ibeacon.h"
 #include "my_sd_card.h"
 #include "http_download.h"
+#include "parse_JSON.h"
 
 xQueueHandle Beacon_Queue_Handle = 0;
 xQueueHandle Http_Queue_Handle = 0;
@@ -17,6 +18,6 @@ void app_main()
     ibeacon_init();
     sd_card_init();
     initialise_wifi();
-    check_database();
+    read_JSON();
     xTaskCreate(&action_inzone,"action_inzone",2048,NULL,7,NULL);
 }

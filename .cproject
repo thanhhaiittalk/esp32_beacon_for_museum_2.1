@@ -48,11 +48,38 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="0.1953095437.909449309" name="esp_ibeacon_api.h" rcbsApplicability="disable" resourcePath="main/esp_ibeacon_api.h" toolsToInvoke="org.eclipse.cdt.build.core.settings.holder.2101190755.451264352">
-						<tool id="org.eclipse.cdt.build.core.settings.holder.2101190755.451264352" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder.2101190755">
-							<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.786728365" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
-						</tool>
-					</fileInfo>
+					<folderInfo id="0.1953095437.1333538280" name="/" resourcePath="main">
+						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.151184040" name="No ToolChain" superClass="org.eclipse.cdt.build.core.prefbase.toolchain" unusedChildren="">
+							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1258436482" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs.1509979059"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.2119030772" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder.2073053942">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1989675444" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.851749686" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder.2101190755">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1854056486" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.689296466" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder.1868426313">
+								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.2083900746" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/esp32/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/newlib/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/freertos/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/nvs_flash/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/driver/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/log/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/soc/esp32/include&quot;"/>
+									<listOptionValue builtIn="false" value="/home/hai_dotcom/esp/esp-idf/components/bt/bluedroid/device/include"/>
+									<listOptionValue builtIn="false" value="/home/hai_dotcom/esp/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/5.2.0/include"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/bt/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/bt/bluedroid/api/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/sdmmc/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/fatfs/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/lwip/include/lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/project_zer0/build/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/json/cJSON&quot;"/>
+								</option>
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1751853148" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
