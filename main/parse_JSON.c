@@ -9,8 +9,11 @@
 #include "my_sd_card.h"
 #include "http_download.h"
 
-extern xQueueHandle HttpUpdate_Queue_Handle;
-extern TaskHandle_t xhttp_update_Handle;
+//extern xQueueHandle HttpUpdate_Queue_Handle;
+//extern TaskHandle_t xhttp_update_Handle;
+extern xQueueHandle HttpDownload_Queue_Handle;
+extern xTaskHandle xhttp_download_Handle;
+
 void read_JSON()
 {
 	char line[64];
@@ -65,8 +68,14 @@ bool check_update(const char * const json)
    					"Host: "WEB_SERVER"\r\n"
 					"User-Agent: esp-idf/1.0 esp32\r\n"
 					"\r\n";
-   	xTaskCreate(&http_check_update_task,"http_check_update_task",2048,NULL,5,xhttp_update_Handle);
-   	if(!xQueueSend(HttpUpdate_Queue_Handle,&data,portMAX_DELAY)){
+//   	xTaskCreate(&http_check_update_task,"http_check_update_task",2048,NULL,5,xhttp_update_Handle);
+//   	if(!xQueueSend(HttpUpdate_Queue_Handle,&data,portMAX_DELAY)){
+//   		printf("Parse JSON: Failed to send request to http_check_update_task \n");
+//   	}
+//   	else
+//   		printf("Parse JSON: Successfully send request to http_check_update_task \n");
+   	xTaskCreate(&http_download_task,"http_download_task",2048,NULL,6,xhttp_download_Handle);
+   	if(!xQueueSend(HttpDownload_Queue_Handle,&data,portMAX_DELAY)){
    		printf("Parse JSON: Failed to send request to http_check_update_task \n");
    	}
    	else
