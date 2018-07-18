@@ -9,6 +9,8 @@
 #include "my_sd_card.h"
 #include "http_download.h"
 
+extern xQueueHandle HttpUpdate_Queue_Handle;
+extern TaskHandle_t xhttp_update_Handle;
 void read_JSON()
 {
 	char line[64];
@@ -35,6 +37,7 @@ void read_JSON()
 
 bool check_update(const char * const json)
 {
+	data data;
 	const cJSON *update = NULL;
     const cJSON *artifacts = NULL;
 
@@ -54,7 +57,20 @@ bool check_update(const char * const json)
     if (cJSON_IsString(update) && (update->valuestring != NULL))
     {
         printf("Checking update \"%s\"\n", update->valuestring);
+        data.update =update->valuestring;
     }
+    data.url = "http://www.stream.esy.es/database/data/hcm_fine_arts_museum/overview/hcm_fine_arts_museum.txt";
+   	data.name = "/sdcard/json.txt";
+   	data.request= "GET http://www.stream.esy.es/database/data/hcm_fine_arts_museum/overview/hcm_fine_arts_museum.txt HTTP/1.0\r\n"
+   					"Host: "WEB_SERVER"\r\n"
+					"User-Agent: esp-idf/1.0 esp32\r\n"
+					"\r\n";
+   	xTaskCreate(&http_check_update_task,"http_check_update_task",2048,NULL,5,xhttp_update_Handle);
+   	if(!xQueueSend(HttpUpdate_Queue_Handle,&data,portMAX_DELAY)){
+   		printf("Parse JSON: Failed to send request to http_check_update_task \n");
+   	}
+   	else
+   		printf("Parse JSON: Successfully send request to http_check_update_task \n");
 	end:
 		cJSON_Delete(muse_json);
 	    return status;

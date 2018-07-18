@@ -43,6 +43,7 @@
 
 /*Prototype*/
 void http_download_task(void *pvParameters);
+void http_check_update_task(void *pvParameters);
 void initialise_wifi(void);
 esp_err_t event_handler(void *ctx, system_event_t *event);
 

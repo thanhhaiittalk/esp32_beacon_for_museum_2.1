@@ -8,7 +8,8 @@
 #include "my_sd_card.h"
 #include "project_main.h"
 
-extern xQueueHandle Http_Queue_Handle;
+extern xQueueHandle HttpDownload_Queue_Handle;
+extern TaskHandle_t xhttp_download_Handle;
 
 void sd_card_init()
 {
@@ -63,6 +64,7 @@ long cal_size(FILE * file)
  *If database file isn't available, download it*/
 bool check_JSON()
 {
+
 	data data;
 	//TaskHandle_t xHttpHandle;
 	FILE* json= fopen("/sdcard/json.txt", "r");
@@ -74,11 +76,11 @@ bool check_JSON()
 				    "Host: "WEB_SERVER"\r\n"
 				    "User-Agent: esp-idf/1.0 esp32\r\n"
 				    "\r\n";
-			xTaskCreate(&http_download_task,"http_download_task",2048,NULL,6,NULL);
-			if(!xQueueSend(Http_Queue_Handle,&data,portMAX_DELAY)){
+			data.update = "0";
+			xTaskCreate(&http_download_task,"http_download_task",2048,NULL,6,&xhttp_download_Handle);
+			if(!xQueueSend(HttpDownload_Queue_Handle,&data,portMAX_DELAY)){
 				printf("Failed to send request to HTTP download task \n");
 			}
-			//vTaskDelete(xHttpHandle);
 			return false;
 		}
 	else{

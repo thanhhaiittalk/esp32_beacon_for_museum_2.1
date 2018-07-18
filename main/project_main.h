@@ -39,6 +39,7 @@ typedef struct{
 	char *name;
 	char *url;
 	char *request;
+	char * update
 }data;
 
 #endif /* MAIN_PROJECT_MAIN_H_ */
